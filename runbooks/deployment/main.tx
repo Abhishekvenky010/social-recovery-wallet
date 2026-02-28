@@ -1,0 +1,15 @@
+################################################################
+# Manage social-recovery-wallet deployment through Crypto Infrastructure as Code
+################################################################
+
+addon "svm" {
+    rpc_api_url = input.rpc_api_url
+    network_id = input.network_id
+}
+
+action "deploy_social_recovery_wallet" "svm::deploy_program" {
+    description = "Deploy social_recovery_wallet program"
+    program = svm::get_program_from_anchor_project("social_recovery_wallet") 
+    authority = signer.authority
+    payer = signer.payer
+}
